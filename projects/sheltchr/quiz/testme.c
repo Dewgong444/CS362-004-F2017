@@ -5,14 +5,25 @@
 
 char inputChar()
 {
-    // TODO: rewrite this function
-    return ' ';
+//Generate a random character from the ASCII table from 32-126 (not delete)
+    char n = (rand()%(95))+32;
+    return n;
 }
 
 char *inputString()
 {
-    // TODO: rewrite this function
-    return "";
+    //we have to generate a string of "reset " with a null terminator.
+    //So we need to create a random string of length 6.
+    char *randomString = malloc(6);
+    int i;
+    //for loop to generate the string of lowercase letters
+    for (i = 0; i < 6; i++)
+    {
+	randomString[i] = (rand()%(123-97)) + 97;
+    }
+    //have to have the null terminator.
+    randomString[5] = '\0';
+    return randomString;
 }
 
 void testme()
@@ -42,7 +53,7 @@ void testme()
        && s[4] == 't' && s[5] == '\0'
        && state == 9)
     {
-      printf("error ");
+      printf("error \n");
       exit(200);
     }
   }
