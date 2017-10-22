@@ -1,1 +1,1 @@
-This is for quiz 2 Random Testing.
+You can make and compile running 'make run'.
