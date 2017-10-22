@@ -668,6 +668,7 @@ while(drawntreasure<2){
         state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
         z=z-1;
       }
+state->numActions--;
 }
 
 void playSmithy(struct gameState *state, int handPos)
@@ -678,7 +679,7 @@ for (i = 0; i < 2; i++)
         {
           drawCard(currentPlayer, state);
         }
-
+state->numActions--;
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
 }
@@ -704,6 +705,7 @@ for (i = 0; i < 4; i++)
 //+1 Buy
 state->numBuys++;
 discardCard(handPos, currentPlayer, state, 0);
+state->numActions--;
 }
 
 void playGreatHall(struct gameState *state, int handPos)
@@ -711,8 +713,7 @@ void playGreatHall(struct gameState *state, int handPos)
 int currentPlayer = whoseTurn(state);
 //draw a card
 drawCard(currentPlayer, state);
-      //+1 Actions
-state->numActions++;
+      //+1 Actions is canceled by using an action.
 //discard card from hand
 discardCard(handPos, currentPlayer, state, 0);
 }
