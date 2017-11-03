@@ -675,7 +675,7 @@ void playSmithy(struct gameState *state, int handPos)
 {
 int currentPlayer = whoseTurn(state);
 int i;
-for (i = 0; i < 2; i++)
+for (i = 0; i < 3; i++)
         {
           drawCard(currentPlayer, state);
         }
