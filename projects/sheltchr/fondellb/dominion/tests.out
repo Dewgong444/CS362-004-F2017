@@ -1,0 +1,185 @@
+Result for running dominion tests:
+unittest1.c
+--------------------Testing buyCard(): -------------------
+When the game ends, the isGameOver() function will return 1, otherwise it will return 0.
+Confirm that we get a return of 0, the game is not over. Since the game cannot end before the first player's turn, if we check right when we initialize a game, it should return a value of 0.
+We expect a value of 0 and we get: 0. 
+Now we can check if the game ends when the province supply is 0 by setting it to 0.
+We expect to get a value of 1, signifying the game's ended and we get: 1. 
+We will not reset test game back to the initial game state.
+We will now test if the game ends on any one pile having a supply of 0. Let's try estate.
+We expect to get a value of 0, signifying the game is not over and we get: 0. 
+We will now empty another supply pile to check if it ends on 2 empty piles. We will empty mine.
+We expect to get a value of 0, signifying the game is not over and we get: 0. 
+We will now empty another supply pile to check if it ends on 3 empty piles. We will empty silver.
+We expect to get a value of 1, signifying the game is over and we get: 1. 
+We will now empty another supply pile to check if it ends on 4 empty piles. We will empty gold.
+We expect to get a value of 1, signifying the game is over and we get: 1. 
+If we didn't get an error, SUCCESS
+------------------THIS CONCLUDES TESTING FOR buyCard() ---------------- 
+File 'dominion.c'
+Lines executed:16.93% of 573
+Creating 'dominion.c.gcov'
+
+unittest2.c
+--------------------Testing numHandCards(): -------------------
+Confirm base hand count is the same between game states.
+Hand count is base game is: 5 and hand count in test game is: 5. 
+Confirm the function returns the right number of cards by comparing it to a direct call.
+Direct call of hand count is: 5 and function call of hand count is: 5. 
+We've drawn a card to the player in test game, we'll confirm his hand is 1 more than the hand in the base game.
+Hand count is base game is: 5 and hand count in test game is: 6. 
+If we didn't get an error, SUCCESS
+------------------THIS CONCLUDES TESTING FOR numHandCards() ---------------- 
+File 'dominion.c'
+Lines executed:17.63% of 573
+Creating 'dominion.c.gcov'
+
+unittest3.c
+--------------------TESTING supplyCount(): ------------------- 
+Confirm the base supply count for 'estate' is the same between game states. 
+Estate supply in the base game is: 8 and the supply in test game is: 8. 
+Confirm the direct call matches the function call for supplyCount() on 'estate'. 
+Estate supply directly called is: 8 and function called is: 8. 
+Confirm buying an estate in the test game changes the supply call on 'estate'. 
+Estate supply in base game is: 8 and estate supply in test game is: 7. 
+If we didn't get an error, SUCCESS
+------------------THIS CONCLUDES TESTING FOR supplyCount() ---------------- 
+File 'dominion.c'
+Lines executed:21.64% of 573
+Creating 'dominion.c.gcov'
+
+unittest4.c
+--------------------Testing buyCard(): -------------------
+Before we test that the buyCard fails, let's ensure it works like it's supposed to.
+Since the least money you can start with is 2, you should always be able to buy an estate.
+Supply before the buy attempt is: 8 and supply after is: 7. 
+We will reinitialize the game and test game between each test to ensure all data is reset to normal.
+Confirm that you cannot buy a card if you have no buys left to make.
+We will change the numBuys of testGame to 0 and then attempt to buy an estate.
+Supply before the buy attempt is: 8 and supply after is: 8. 
+We've RESET again.
+Confirm that if the supply count is 0, you cannot buy that card.
+We've set the test game's estate supply count to 0.
+Supply before the buy attempt is: 0 and supply after is: 0. 
+We've RESET again.
+Confirm that if the supply count is 0, you cannot buy that card.
+We've set the test game's coin count to 0.
+Supply before the buy attempt is: 8 and supply after is: 8. 
+If we didn't get an error, SUCCESS
+------------------THIS CONCLUDES TESTING FOR buyCard() ---------------- 
+File 'dominion.c'
+Lines executed:22.16% of 573
+Creating 'dominion.c.gcov'
+
+cardtest1.c
+--------------------Testing playVillage(): -------------------
+We'll introduce village as a card the player has in hand position 0 in order to test it.
+We've copied the game state to a test copy to compare between them.
+We've now played the village card. We will check to confirm that the player got +2 actions.
+Since village takes 1 action to play, the test game play should have 1 more action than the base game player.
+Base player should have 1 action and we have: 1 and test player should have 2 and we have: 3. 
+We should have 2 actions in the test game and we have 3 
+We also need to confirm that the village card is properly placed in the played pile.
+Since village was only played in the test game and only 1 copy exists in the hand for sure, we just need to make sure the hand position between the players isn't the same.
+We've confirmed that village is played.
+We can also check the size of the played piles to confirm village ended in the right place.
+We expect the base played to be 0 and get: 0 and we expect the test played to be 1 and get: 1 
+We also need to confirm that village drew 1 card, which should replace it. Now, both players should have the same hand size between games.
+We expect both hand sizes to be 5. Base is: 5. Test is: 5. 
+We need to confirm the drawn card came out of the deck.
+As such, we need to compare deck counts and ensure test deck has 1 card less than base deck.
+We expect test game to have 1 less than base. Base is: 5. Test is: 4. 
+We've confirmed the other card piles didn't change with assert() statements.
+We've asserted the other player's stuff didn't change.
+If we didn't get an error, SUCCESS
+------------------THIS CONCLUDES TESTING FOR playVillage() ---------------- 
+File 'dominion.c'
+Lines executed:26.70% of 573
+Creating 'dominion.c.gcov'
+
+cardtest2.c
+--------------------Testing smithyCard(): -------------------
+We'll introduce smithy as a card the player has in hand position 0 in order to test it.
+We've copied the game state to a test copy to compare between them.
+We've now played the smithy card. We will check to confirm that the player got -1 actions.
+Since smithy takes 1 action to play, the base game play should have 1 more action than the test game player.
+Base player should have 1 action and we have: 1 and test player should have 0 and we have: 1. 
+We should have 0 actions left in the test game and we have 1 
+We also need to confirm that the smithy card is properly placed in the played pile.
+Since smithy was only played in the test game and only 1 copy exists in the hand for sure, we just need to make sure the hand position between the players isn't the same.
+We've confirmed that smithy is played.
+We can also check the size of the played piles to confirm smithy ended in the right place.
+We expect the base played to be 0 and get: 0 and we expect the test played to be 1 and get: 1 
+We've confirmed the other card piles didn't change with assert() statements.
+We've asserted the other player's stuff didn't change.
+We also need to confirm that smithy drew 3 cards, which should replace it. Now, test game should have 2 more cards than the base player.
+We expect base hand to be 5 and base is: 5. We expect test hand to be 7 and test is: 8. 
+We didn't draw the right number of cards!
+We need to confirm the drawn cards came out of the deck.
+As such, we need to compare deck counts and ensure test deck has 3 cards less than base deck.
+We expect test game to have 3 less than base. Base is: 5. Test is: 1. 
+We have the wrong number of cards left in the deck!
+We got some errors, :( 
+------------------THIS CONCLUDES TESTING FOR playSmithy() ---------------- 
+File 'dominion.c'
+Lines executed:28.10% of 573
+Creating 'dominion.c.gcov'
+
+cardtest3.c
+--------------------Testing playAdventurer(): -------------------
+We'll introduce adventurer as a card the player has in hand position 0 in order to test it.
+We've copied the game state to a test copy to compare between them.
+We've now played the adventurer card. We will check to confirm that the player got -1 actions.
+Since adventurer takes 1 action to play, the base game play should have 1 more action than the test game player.
+Base player should have 1 action and we have: 1 and test player should have 0 and we have: 1. 
+We expect test actions to be at 0 and it's at: 1
+We also need to confirm that the adventurer card is properly placed in the played pile.
+Since smithy was only played in the test game and only 1 copy exists in the hand for sure, we just need to make sure the hand position between the players isn't the same.
+Adventurer card wasn't moved to played pile.
+We can also check the size of the played piles to confirm adventurer ended in the right place.
+We expect the base played to be 0 and get: 0 and we expect the test played to be 1 and get: 0 
+The played pile is 0.
+We've confirmed the other card piles didn't change with assert() statements.
+We've asserted the other player's stuff didn't change.
+Since the player must have 2 treasure in the deck at the start of the game, adventurer will draw 2 copper. 
+We need to confirm the drawn cards come from the player's deck, compare deck sizes bewtween states.
+We expect test deck to be more than 1 card fewer than the base deck. Base deck is: 5. Test deck is: 3. 
+We had some errors :(
+------------------THIS CONCLUDES TESTING FOR playAdventurer() ---------------- 
+File 'dominion.c'
+Lines executed:30.19% of 573
+Creating 'dominion.c.gcov'
+
+cardtest4.c
+--------------------Testing playCouncilRoom(): -------------------
+We'll introduce council room as a card the player has in hand position 0 in order to test it.
+We've copied the game state to a test copy to compare between them.
+We've now played the council room card. We will check to confirm that the player got -1 actions.
+Since council room takes 1 action to play, the base game play should have 1 more action than the test game player.
+Base player should have 1 action and we have: 1 and test player should have 0 and we have: 1. 
+Test game doesn't have the correct number of actions left. We should have 0 and we have 1 
+We also need to confirm that the council room card is properly placed in the played pile.
+Since council room was only played in the test game and only 1 copy exists in the hand for sure, we just need to make sure the hand position between the players isn't the same.
+We've confirmed that council room is played.
+We can also check the size of the played piles to confirm council room ended in the right place.
+We expect the base played to be 0 and get: 0 and we expect the test played to be 1 and get: 1 
+We also need to confirm that council room drew 4 cards, which should replace it. Now, test game should have 3 more cards than the base player.
+We expect base hand to be 5 and base is: 5. We expect test hand to be 8 and test is: 8. 
+We need to confirm the drawn cards came out of the deck.
+As such, we need to compare deck counts and ensure test deck has 4 cards less than base deck.
+We expect test game to have 4 less than base. Base is: 5. Test is: 1. 
+We now need to check that the number of buys increased by 1 compared to the base game.
+We expect base buys to be 1 and it's: 1. We expect test buys to be 2 and it's: 2. 
+We need to check that other players drew 1 card too.
+The other player in the base game should then have 1 less card in hand than the one in test game.
+We expect base hand to be 0 since they haven't drawn and it's: 0. We expect test hand to be 1 and it's: 0. 
+The other players didn't draw.
+We've asserted the other player's stuff didn't change.
+We've confirmed the other card piles didn't change with assert() statements.
+We had some errors :( 
+------------------THIS CONCLUDES TESTING FOR playCouncilRoom() ---------------- 
+File 'dominion.c'
+Lines executed:32.29% of 573
+Creating 'dominion.c.gcov'
+
